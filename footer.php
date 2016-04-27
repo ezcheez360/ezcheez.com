@@ -1,21 +1,30 @@
-<?php
- /**
- * The template for displaying the footer.
- *
- *
- * @package Customizr
- * @since Customizr 3.0
- */
-  	do_action( '__before_footer' ); ?>
-  		<!-- FOOTER -->
-  		<footer id="footer" class="<?php echo tc__f('tc_footer_classes', '') ?>">
-  		 	<?php do_action( '__footer' ); // hook of footer widget and colophon?>
-  		</footer>
-    </div><!-- //#tc-page-wrapper -->
-		<?php
-    do_action( '__after_page_wrap' );
-		wp_footer(); //do not remove, used by the theme and many plugins
-	  do_action( '__after_footer' ); ?>
+			<!-- footer -->
+			<footer class="footer" role="contentinfo">
+
+				<!-- copyright -->
+				<p class="copyright">
+					&copy; <?php echo date('Y'); ?> Copyright <?php bloginfo('name'); ?>. <?php _e('Powered by', 'html5blank'); ?>
+					<a href="//wordpress.org" title="WordPress">WordPress</a> &amp; <a href="//html5blank.com" title="HTML5 Blank">HTML5 Blank</a>.
+				</p>
+				<!-- /copyright -->
+
+			</footer>
+			<!-- /footer -->
+
+		</div>
+		<!-- /wrapper -->
+
+		<?php wp_footer(); ?>
+
+		<!-- analytics -->
+		<script>
+		(function(f,i,r,e,s,h,l){i['GoogleAnalyticsObject']=s;f[s]=f[s]||function(){
+		(f[s].q=f[s].q||[]).push(arguments)},f[s].l=1*new Date();h=i.createElement(r),
+		l=i.getElementsByTagName(r)[0];h.async=1;h.src=e;l.parentNode.insertBefore(h,l)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-XXXXXXXX-XX', 'yourdomain.com');
+		ga('send', 'pageview');
+		</script>
+
 	</body>
-	<?php do_action( '__after_body' ); ?>
 </html>

@@ -1,30 +1,24 @@
-<?php
-/**
- * The template for displaying Comments.
- *
- * The area of the page that contains both current comments
- * and the comment form. The actual display of comments is
- * handled by a callback to tc_comment_callback()
- *
- * @package Customizr
- * @since Customizr 1.0
- */
+<div class="comments">
+	<?php if (post_password_required()) : ?>
+	<p><?php _e( 'Post is password protected. Enter the password to view any comments.', 'html5blank' ); ?></p>
+</div>
 
-/*
- * If the current post is protected by a password and
- * the visitor has not yet entered the password we will
- * return early without loading the comments.
- */
+	<?php return; endif; ?>
 
-if ( have_comments() ) {
-	echo apply_filters( 'tc_comment_separator', '<hr class="featurette-divider '. current_filter() .'">' );
-}
-?>
+<?php if (have_comments()) : ?>
 
-<div id="comments" class="<?php echo implode( ' ', apply_filters( 'tc_comments_wrapper_class' , array('comments-area') ) ) ?>" >
-	<?php
-		comment_form();
-		if ( have_comments() && apply_filters( 'tc_display_comment_list', true ) )
-			do_action ( '__comment' );
-	?>
-</div><!-- //#comments .comments-area -->
+	<h2><?php comments_number(); ?></h2>
+
+	<ul>
+		<?php wp_list_comments('type=comment&callback=html5blankcomments'); // Custom callback in functions.php ?>
+	</ul>
+
+<?php elseif ( ! comments_open() && ! is_page() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
+
+	<p><?php _e( 'Comments are closed here.', 'html5blank' ); ?></p>
+
+<?php endif; ?>
+
+<?php comment_form(); ?>
+
+</div>
